@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DearDiary</string>
+    <string name="txtForgotPassword">Forgot Password?</string>
+    <string name="txtDearDiary">DEAR DIARY</string>
+    <string name="hintPassword">1234</string>
+    <string name="txtPassword">Password</string>
+    <string name="helpPassword">Enter a 4 digit password</string>
+    <string name="txtDearDiaryEntry">Dear Diary,</string>
+    <string name="txtNewPassword">New Password</string>
+    <string name="helpNewPassword">Re-enter Password</string>
+    <string name="txtDateLbl">Date</string>
+    <string name="txtBackDialog">Are you sure you want to go back? You will discard all the changes made...</string>
+    <string name="txtDeleteDialog">Are you sure you want to delete this entry?</string>
+    <string name="txtYes">Yes</string>
+    <string name="txtCancel">Cancel</string>
+
+</resources>

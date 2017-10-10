@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_pink"
+    tools:context="edu.mhu.cs.brandonwatkins.deardiary.LoginActivity">
+
+    <ImageButton
+        android:id="@+id/unlockButton"
+        android:layout_width="266dp"
+        android:layout_height="77dp"
+        android:background="@color/light_pink"
+        android:elevation="0dp"
+        android:scaleType="fitCenter"
+        android:onClick="unlockBtn"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/unlockbtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReEnterPassword" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="146dp"
+        android:layout_height="144dp"
+        app:srcCompat="@drawable/deardiarylogo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="70dp"
+        app:layout_constraintHorizontal_bias="0.498" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:letterSpacing="0.15"
+        android:text="@string/txtDearDiary"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/Violet"
+        android:ems="10"
+        android:hint="@string/hintPassword"
+        android:inputType="numberPassword"
+        android:textColor="@android:color/white"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="38dp"
+        android:text="@string/txtPassword"
+        app:layout_constraintLeft_toLeftOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/helpPassword"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        android:layout_marginLeft="1dp"
+        app:layout_constraintLeft_toLeftOf="@+id/password"
+        android:layout_marginStart="1dp" />
+
+    <TextView
+        android:id="@+id/textViewReEnterPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="@string/helpNewPassword"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/newPassword"
+        app:layout_constraintLeft_toLeftOf="@+id/newPassword" />
+
+    <EditText
+        android:id="@+id/newPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/Violet"
+        android:ems="10"
+        android:hint="@string/hintPassword"
+        android:inputType="numberPassword"
+        android:textColor="@android:color/white"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNewPassword" />
+
+    r<TextView
+        android:id="@+id/textViewNewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+        android:text="@string/txtNewPassword"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <ImageButton
+        android:id="@+id/saveBtn"
+        android:layout_width="268dp"
+        android:layout_height="77dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/light_pink"
+        android:onClick="savePasswordBtn"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReEnterPassword"
+        app:srcCompat="@drawable/savepasswordbtn" />
+
+</android.support.constraint.ConstraintLayout>
