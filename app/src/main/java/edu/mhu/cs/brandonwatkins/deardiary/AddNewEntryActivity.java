@@ -20,7 +20,7 @@ public class AddNewEntryActivity extends AppCompatActivity {
     int mMonth;
     int mYear;
     String entryText;
-    private long entryDate = System.currentTimeMillis();
+    private long entryDate;
     private TextView lblDateSelected;
     private EditText txtJournalEntry;
     Journal newJournal;
@@ -93,6 +93,13 @@ public class AddNewEntryActivity extends AppCompatActivity {
     public void saveBtn(View v) {
         txtJournalEntry = (EditText) findViewById(R.id.journalEntry);
         entryText       = txtJournalEntry.getText().toString();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, mYear);
+        calendar.set(Calendar.MONTH, mMonth);
+        calendar.set(Calendar.DAY_OF_MONTH, mDay);
+
+        entryDate = calendar.getTimeInMillis();
 
         JournalEntry je = new JournalEntry(entryText, entryDate);
         newJournal.addEntry(je);

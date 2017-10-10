@@ -30,17 +30,16 @@ public class Journal {
                 JournalEntry thisEntry = entries.get(i);
                 if (e.getEntryDate() < thisEntry.getEntryDate()){
                     entries.add(i, e);
-                    for (int j = 0; j < entries.size(); j++) {
+                    /*for (int j = 0; j < entries.size(); j++) {
                         Log.d("Dear Diary", "Entry 1: " + entries.get(j));
-                    }
+                    }*/
                     return;
                 }
             }
             entries.add(e);
-
-            for (int j = 0; j < entries.size(); j++) {
+           /* for (int j = 0; j < entries.size(); j++) {
                 Log.d("Dear Diary", "Entry 2: " + entries.get(j));
-            }
+            }*/
             return;
         }
     }
@@ -94,6 +93,11 @@ public class Journal {
         return gson.fromJson(serializedData, Journal.class);
     }
 
+    /*public String[] myJournalEntries() {
+        for (int j = 0; j < entries.size(); j++) {
+
+        }
+    }*/
 
     public ArrayList<JournalEntry> getEntries() {
         return entries;
