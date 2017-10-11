@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 /**
  * Created by brandonwatkins on 26/09/17.
@@ -24,7 +25,25 @@ public class Journal {
      * @param e the JournalEntry
      */
     public void addEntry(JournalEntry e){
-        // Do insertion sort
+
+        //Checks if Journal Entry for that date already exists. If it does, it then appends the text.
+        for (int i = 0; i < entries.size(); i++) {
+            JournalEntry oldJournalEntry = entries.get(i);
+
+            Log.d("Dear Diary", "New Entry Date: " + IOManager.getDateString(e.getEntryDate()));
+            Log.d("Dear Diary", "Old Entry Date: " + IOManager.getDateString(oldJournalEntry.getEntryDate()));
+
+            if (IOManager.getDateString(e.getEntryDate()).equals(IOManager.getDateString(oldJournalEntry.getEntryDate()))){
+                String oldText = oldJournalEntry.getEntryText();
+                String newText = e.getEntryText();
+                String combinedText = oldText + "\n" + newText;
+
+                oldJournalEntry.setEntryText(combinedText);
+                return;
+            }
+        }
+
+        // Do insertion sort and puts entry is the correct position for its date
         if (e != null) {
             for (int i = 0; i < entries.size(); i++) {
                 JournalEntry thisEntry = entries.get(i);
@@ -37,13 +56,15 @@ public class Journal {
                 }
             }
             entries.add(e);
-           /* for (int j = 0; j < entries.size(); j++) {
-                Log.d("Dear Diary", "Entry 2: " + entries.get(j));
-            }*/
             return;
         }
     }
 
+
+    public void checkDate(long entryDate1, long entryDate2){
+        Calendar c = Calendar.getInstance();
+
+    }
     /**
      * Updates the JournalEntry that has been edited
      * @param id the id of the JournalEntry
