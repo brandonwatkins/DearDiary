@@ -50,9 +50,9 @@ public class AddNewEntryActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         lblDateSelected.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                        mDay = dayOfMonth;
-                        mMonth = monthOfYear;
-                        mYear = year;
+                        mDay    = dayOfMonth;
+                        mMonth  = monthOfYear;
+                        mYear   = year;
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();

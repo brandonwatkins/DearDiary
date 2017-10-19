@@ -63,8 +63,8 @@ public class Journal {
 
     public void checkDate(long entryDate1, long entryDate2){
         Calendar c = Calendar.getInstance();
-
     }
+
     /**
      * Updates the JournalEntry that has been edited
      * @param id the id of the JournalEntry
@@ -114,14 +114,36 @@ public class Journal {
         return gson.fromJson(serializedData, Journal.class);
     }
 
-    /*public String[] myJournalEntries() {
+    public String[] myJournalEntries() {
+        String[] mje = new String[entries.size() + 1];
+        /*Test to see if String[] gets loaded in
+        String[] mje = new String[6];
+        mje[0] = "Select a date";
+        mje[1] = "Test1";
+        mje[2] = "Test2";
+        mje[3] = "Test3";
+        mje[4] = "Test4";
+        mje[5] = "Test1";
+        */
+        mje[0] = "Select a date...";
         for (int j = 0; j < entries.size(); j++) {
+            JournalEntry currentEntry = entries.get(j);
+            mje[j + 1] = IOManager.getDateString(currentEntry.getEntryDate());
 
+            if (mje[j] == null) Log.d("Dear Diary", "THIS IS NULL: " + mje[j]);
+
+            Log.d("Dear Diary", "Array of Strings: " + mje[j]);
         }
-    }*/
 
-    public ArrayList<JournalEntry> getEntries() {
-        return entries;
+        return mje;
     }
 
+    public JournalEntry getEntryAtIndex(int i){
+        if (entries.get(i) != null) {
+            JournalEntry e = entries.get(i);
+            return e;
+        }
+        return null;
+
+    }
 }

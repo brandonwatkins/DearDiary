@@ -6,10 +6,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,32 +22,50 @@ public class ViewEditActivity extends AppCompatActivity {
     int mDay;
     int mMonth;
     int mYear;
+    String entryText;
     private TextView lblDateSelected;
     private Spinner dateSpinner;
-    Journal loadedJournal;
+    private EditText txtJournalEntry;
+    Journal j;
+    private long selectedJournalID;
+    JournalEntry je;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_edit);
 
-        lblDateSelected = (TextView) findViewById(R.id.dateSelected);
-        dateSpinner = (Spinner) findViewById(R.id.spinner);
+        lblDateSelected     = (TextView) findViewById(R.id.dateSelected);
+        dateSpinner         = (Spinner) findViewById(R.id.spinner);
+        txtJournalEntry     = (EditText) findViewById(R.id.viewEditText);
 
+        j = IOManager.loadJournal(this);
 
-    }
-
-        //Journal j = IOManager.loadJournal(this);
-
-        /*Spinner with dates loaded in
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
+        //Spinner with dates loaded in
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>
                 (this, android.R.layout.simple_spinner_item,
-                        spinnerArray); //selected item will look like a spinner set from XML
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout
-                .simple_spinner_dropdown_item);
+                        j.myJournalEntries());
+
         dateSpinner.setAdapter(spinnerArrayAdapter);
+
+        dateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i > 0) {
+                    txtJournalEntry.setText(j.getEntryAtIndex(i - 1).getEntryText());
+                    selectedJournalID = j.getEntryAtIndex(i - 1).getId();
+                    je = j.getEntryAtIndex(i - 1);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
     }
-    */
+
     public void selectDate(View v) {
 
         datePickerDialog = new DatePickerDialog(ViewEditActivity.this,
@@ -71,7 +92,7 @@ public class ViewEditActivity extends AppCompatActivity {
                 R.string.txtYes,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //Code to delete entry
+                        j.deleteEntry(selectedJournalID);
                         finish();
                     }
                 }
@@ -91,5 +112,14 @@ public class ViewEditActivity extends AppCompatActivity {
 
     public void saveBtn(View v) {
 
+        txtJournalEntry = (EditText) findViewById(R.id.viewEditText);
+        entryText       = txtJournalEntry.getText().toString();
+
+        j.updateEntry(selectedJournalID, entryText);
+
+        IOManager.saveJournal(this, j);
+
+        Toast.makeText(ViewEditActivity.this, "Your Diary entry was saved",
+                Toast.LENGTH_LONG).show();
     }
 }
