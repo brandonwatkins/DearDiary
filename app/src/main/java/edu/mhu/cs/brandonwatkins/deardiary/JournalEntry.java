@@ -9,6 +9,11 @@ public class JournalEntry {
     private long entryDate; //date to which entry belongs
     private String entryText; //text of journal entry
 
+    /**
+     * Constructor for JournalEntry
+     * @param entryText
+     * @param entryDate
+     */
     public JournalEntry(String entryText, long entryDate){
         id = System.currentTimeMillis();
         this.entryText = entryText;

@@ -19,10 +19,6 @@ import java.util.ArrayList;
 
 public class ViewEditActivity extends AppCompatActivity {
 
-    private DatePickerDialog datePickerDialog;
-    int mDay;
-    int mMonth;
-    int mYear;
     int selectedYear;
     int selectedMonth;
     String selectedDate;
@@ -38,7 +34,9 @@ public class ViewEditActivity extends AppCompatActivity {
     private long selectedJournalID;
     JournalEntry je;
 
-    String[] months = new String[] {"Month", "January",
+    String[] months = new String[] {
+            "Month",
+            "January",
             "February",
             "March",
             "April",
@@ -103,11 +101,7 @@ public class ViewEditActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i > 0) {
                     selectedMonth = i + 2;
-                    /*
-                    String month = monthSpinner.getSelectedItem().toString();
-                    char monthNumber = month.charAt(0);
-                    selectedMonth = Integer.parseInt(String.valueOf(monthNumber));
-                    **/
+
                     dateSpinner.setEnabled(true);
                     txtJournalEntry.setEnabled(false);
                     txtJournalEntry.setText("");
@@ -122,8 +116,6 @@ public class ViewEditActivity extends AppCompatActivity {
         });
 
         //Spinner with dates loaded in
-
-
         dateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -150,25 +142,9 @@ public class ViewEditActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * Button that is used to delete the entry selected
      * @param v
      */
-    /*
-    public void selectDate(View v) {
-
-        datePickerDialog = new DatePickerDialog(ViewEditActivity.this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        lblDateSelected.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                        mDay = dayOfMonth;
-                        mMonth = monthOfYear;
-                        mYear = year;
-                    }
-                }, mYear, mMonth, mDay);
-        datePickerDialog.show();
-    }
-    */
     public void deleteBtn(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -182,6 +158,7 @@ public class ViewEditActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         j.deleteEntry(selectedJournalID);
                         txtJournalEntry.setText("");
+                        txtJournalEntry.setEnabled(false);
 
                         //If last Journal Entry is deleted return to previous screen ISSUE #4
                         if(j.getEntries().size() == 0){
@@ -206,6 +183,10 @@ public class ViewEditActivity extends AppCompatActivity {
         IOManager.saveJournal(this, j);
     }
 
+    /**
+     * Button used to save the changes made to a Journal Entry
+     * @param v
+     */
     public void saveBtn(View v) {
 
         txtJournalEntry = (EditText) findViewById(R.id.viewEditText);
@@ -219,6 +200,10 @@ public class ViewEditActivity extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Loads the correct journal entries corresponding to the
+     * selectedYear and selectedMonth into the dateSpinner
+     */
     public void loadJournalEntrySpinner() {
         //Spinner with dates loaded in
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>
@@ -228,6 +213,9 @@ public class ViewEditActivity extends AppCompatActivity {
         dateSpinner.setAdapter(spinnerArrayAdapter);
     }
 
+    /**
+     * Loads the years of the Journal Entries into the year spinner
+     */
     public void loadYearSpinner() {
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>
                 (this, android.R.layout.simple_spinner_item,

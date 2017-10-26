@@ -49,9 +49,6 @@ public class Journal {
                 JournalEntry thisEntry = entries.get(i);
                 if (e.getEntryDate() < thisEntry.getEntryDate()){
                     entries.add(i, e);
-                    /*for (int j = 0; j < entries.size(); j++) {
-                        Log.d("Dear Diary", "Entry 1: " + entries.get(j));
-                    }*/
                     return;
                 }
             }
@@ -118,10 +115,11 @@ public class Journal {
     }
 
     /**
-     *
+     * Returns an ArrayList of Journal Entries that correspond to the
+     * filters chosen in ViewEditActivity.
      * @param selectedYear that the user chooses in ViewEditActivity
      * @param selectedMonth that the user chooses in ViewEditActivity
-     * @return
+     * @return an ArrayList of Journal Entries
      */
     public ArrayList<String> myJournalEntries(int selectedYear, int selectedMonth) {
         ArrayList<String> mje = new ArrayList<>();
@@ -139,9 +137,6 @@ public class Journal {
                 counter++;
             }
 
-            //if (mje[counter + 1] == null) Log.d("Dear Diary", "THIS IS NULL: " + mje[j]);
-
-            //Log.d("Dear Diary", "Array of Strings: " + mje[j]);
         }
 
         if (mje.size() == 1) {
@@ -151,6 +146,11 @@ public class Journal {
         return mje;
     }
 
+    /**
+     * Finds first and last year of Journal Entries and creates an array with all the other
+     * years in between.
+     * @return a String array of years
+     */
     public String[] yearEntries() {
 
         int firstYear   = Integer.parseInt(IOManager.getYearString(entries.get(0).getEntryDate()));
@@ -169,17 +169,12 @@ public class Journal {
 
     }
 
-/**
-    public String[] getMonthEntries(int year) {
-        String[] months = activity.getResources().getStringArray(R.array.monthNames);
-
-        for (int i = 1; i < months.length; i++){
-
-        }
-        monthEntries[0] = "Select a month...";
-
-    }
-**/
+    /**
+     * This was the original way in which I found the Journal Entry before
+     * I had to add filters to the selection
+     * @param i the index where the journal entry is in the arraylist
+     * @return the journal entry that corresponds with index i
+     *
     public JournalEntry getEntryAtIndex(int i){
         if (entries.get(i) != null) {
             JournalEntry e = entries.get(i);
@@ -188,7 +183,14 @@ public class Journal {
         return null;
 
     }
+    */
 
+    /**
+     * Searches through my ArrrayList of Journal Entries until it finds the
+     * entry that matches the id passed into the method.
+     * @param id of the Journal Entry that is selected
+     * @return the selected Journal Entry. If it doesn't exit return null
+     */
     public JournalEntry getEntryById(long id) {
         for (int j = 0; j < entries.size(); j++) {
             JournalEntry currentEntry = entries.get(j);
@@ -199,10 +201,20 @@ public class Journal {
         return null;
     }
 
+    /**
+     * Getter for the ArrayList of Journal Entries
+     * @return ArrayList of Journal Entries
+     */
     public ArrayList<JournalEntry> getEntries() {
         return entries;
     }
 
+    /**
+     * Finds the Journal Entry selected by the user using the
+     * date in String format
+     * @param selectedDate that uses selects
+     * @return the Journal Entry that matches the selectedDate
+     */
     public JournalEntry findJournal(String selectedDate){
         for (int j = 0; j < entries.size(); j++) {
             JournalEntry currentEntry = entries.get(j);

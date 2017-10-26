@@ -32,6 +32,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Loads password from Shared Preferences
+     */
     public void loadPassword() {
         SharedPreferences prefs = this.getSharedPreferences(DIARY_PREFS, 0);
 
@@ -40,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("Dear Diary", "Loading Password " + storedPassword);
     }
 
+    /**
+     * Saves password to Shared Preferences
+     */
     private void savePassword() {
         Log.d("Dear Diary", "Saving password" + storedPassword);
         SharedPreferences prefs = this.getSharedPreferences(DIARY_PREFS, 0);
@@ -49,6 +55,10 @@ public class LoginActivity extends AppCompatActivity {
         editor.commit();
     }
 
+    /**
+     * Shows the password field for a new password entry. Also shows the save password
+     * button when needed
+     */
     public void showNewPasswordField(){
         TextView lblNewPassword     = (TextView) findViewById(R.id.textViewNewPassword);
         EditText txtNewPassword     = (EditText) findViewById(R.id.newPassword);
@@ -64,6 +74,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Verifies if the password entered matches the password stored in the
+     * Shared Preferences.
+     * @return true or false if the password does or doesn't match
+     */
     public boolean verifyPassword(){
         EditText txtPassword        = (EditText) findViewById(R.id.password);
 
@@ -78,6 +93,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Button that takes the user to the AddViewActivity if the password
+     * entered is correct.
+     * @param v
+     */
     public void unlockBtn(View v) {
         Intent i = new Intent(this, AddViewActivity.class);
 
@@ -96,6 +116,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Button used to save the password entered by the user
+     * @param view
+     */
     public void savePasswordBtn(View view) {
         Intent i = new Intent(this, AddViewActivity.class);
 

@@ -43,6 +43,10 @@ public class AddNewEntryActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Date picker that gets the date selected by the user and stores the data
+     * @param v
+     */
     public void selectDate(View v) {
 
         datePickerDialog = new DatePickerDialog(AddNewEntryActivity.this,
@@ -58,7 +62,11 @@ public class AddNewEntryActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-
+    /**
+     * Back button used to go back to the previous screen. Has an AlertDialog
+     * to confirm users choice
+     * @param v
+     */
     public void backBtn(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -90,6 +98,11 @@ public class AddNewEntryActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Save button that is used to save the Journal Entry and also save
+     * it to the shared preferences
+     * @param v
+     */
     public void saveBtn(View v) {
         txtJournalEntry = (EditText) findViewById(R.id.journalEntry);
         entryText       = txtJournalEntry.getText().toString();
