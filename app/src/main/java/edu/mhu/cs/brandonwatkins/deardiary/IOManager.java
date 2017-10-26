@@ -14,12 +14,24 @@ import java.util.Date;
 public class IOManager {
 
     public final static String DATE_FORMAT  = "dd/MM/yy";
+    public final static String YEAR_FORMAT  = "yyyy";
+    public final static String MONTH_FORMAT  = "MM";
     public final static String DIARY_PREFS  = "edu.mhu.cs.dairy.prefs";
     public final static String JOURNAL      = "edu.mhu.cs.dairy.jounral";
 
     static public String getDateString(long epoch) {
         Log.d("Epoch Time", ":" + epoch);
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        return sdf.format(new Date(epoch));
+    }
+
+    static public String getYearString(long epoch) {
+        SimpleDateFormat sdf = new SimpleDateFormat(YEAR_FORMAT);
+        return sdf.format(new Date(epoch));
+    }
+
+    static public String getMonthString(long epoch) {
+        SimpleDateFormat sdf = new SimpleDateFormat(MONTH_FORMAT);
         return sdf.format(new Date(epoch));
     }
 

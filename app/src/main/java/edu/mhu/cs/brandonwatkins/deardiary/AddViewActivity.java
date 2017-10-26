@@ -7,6 +7,8 @@ import android.view.View;
 
 public class AddViewActivity extends AppCompatActivity {
 
+    //Journal j = IOManager.loadJournal(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,6 +16,12 @@ public class AddViewActivity extends AppCompatActivity {
     }
 
     public void viewPreviousBtn(View v) {
+
+    /*      if(j.getEntries().size() >= 0) {
+            Intent i = new Intent(this, ViewEditActivity.class);
+            startActivity(i);
+        }*/
+
         Intent i = new Intent(this, ViewEditActivity.class);
         startActivity(i);
     }
