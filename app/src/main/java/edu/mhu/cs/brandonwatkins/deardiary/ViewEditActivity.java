@@ -100,7 +100,7 @@ public class ViewEditActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i > 0) {
-                    selectedMonth = i + 2;
+                    selectedMonth = i;
 
                     dateSpinner.setEnabled(true);
                     txtJournalEntry.setEnabled(false);
